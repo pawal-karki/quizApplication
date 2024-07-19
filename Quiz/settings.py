@@ -135,4 +135,15 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only but inplace of console we can use smtp for production level email sending 
+
+ACCOUNT_EMAIL_REQUIRED = True,  # Email & Password are required for registration
+ACCOUNT_EMAIL_VERIFICATION =  'mandatory',  # Email verification is not required
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
