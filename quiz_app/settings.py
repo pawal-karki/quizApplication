@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'authentication'
+    'authentication',
+    'quiz'
 ]
 
 SITE_ID = 1
@@ -143,6 +144,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_UNIQUE_EMAIL = True
 
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
@@ -152,3 +155,6 @@ REST_FRAMEWORK = {
 }
 
 BASE_EMAIL_VERIFY_URL = "http://localhost:3000/verify-email"
+PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL = "http://localhost:3000/password/reset/confirm/"
+
+
