@@ -54,4 +54,3 @@ def get_questions_by_category(request):
         questions = Question.objects.all()[:20]
     serializer = QuestionSerializer(questions, many=True)
     return Response(serializer.data, status=HTTP_200_OK)
-
