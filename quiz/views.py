@@ -23,22 +23,35 @@ def create_questions(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_questions(request):
-    level = request.query_params.get('level')
-    
+    level = request.query_params.get('level') #get the level from the query parameter based on level i.e. the url will be /api/quiz/questions/get-questions/?level=hard
+    valid_levels = ['easy', 'medium', 'hard']
     if level:
-        if level not in ['easy', 'medium', 'hard']:
+        if level not in valid_levels:
             return JsonResponse({'error': 'Invalid level specified'}, status=HTTP_400_BAD_REQUEST)
         questions = Question.objects.filter(level=level)[:20]
     else:
         questions = Question.objects.all()[:20]
-
     serializer = QuestionSerializer(questions, many=True)
     return Response(serializer.data, status=HTTP_200_OK)
+        
+    
 
 @api_view(['GET'])
-
 def get_question_by_id(request, id):
     question = Question.objects.filter(pk=id)
     serializer = QuestionSerializer(instance=question , many=True)
+    return Response(serializer.data, status=HTTP_200_OK)
+
+@api_view(['GET'])
+def get_questions_by_category(request):
+    category = request.query_params.get('category') #get the level from the query parameter based on level i.e. the url will be /api/quiz/questions/get-questions/?level=hard
+    valid_categories = ['Computer Science', 'Science', 'Literature']
+    if category:
+        if category not in valid_categories:
+            return JsonResponse({'error': 'Invalid category specified'}, status=HTTP_400_BAD_REQUEST)
+        questions = Question.objects.filter(category=category)[:20]
+    else:
+        questions = Question.objects.all()[:20]
+    serializer = QuestionSerializer(questions, many=True)
     return Response(serializer.data, status=HTTP_200_OK)
 
