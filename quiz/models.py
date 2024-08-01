@@ -17,8 +17,8 @@ class QuizAttempt(models.Model):
     total_score = models.IntegerField(default = 0) 
 
 class QuestionAttemptDetails(models.Model):
-    quiz_attempt = models.ForeignKey(QuizAttempt, on_delete=models.CASCADE)
+    quiz_attempt = models.ForeignKey(QuizAttempt, on_delete=models.CASCADE , related_name='questions_attempt')
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     selected_option = models.ForeignKey(Options,blank=True,null=True,on_delete=models.CASCADE)
-    is_correct = models.BooleanField()
+    is_correct = models.BooleanField(default=False)
 
