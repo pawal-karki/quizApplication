@@ -22,3 +22,4 @@ class QuestionAttemptDetails(models.Model):
     selected_option = models.ForeignKey(Options,blank=True,null=True,on_delete=models.CASCADE)
     is_correct = models.BooleanField(default=False)
 
+
