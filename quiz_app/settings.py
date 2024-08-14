@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'authentication',
-    'quiz'
+    'quiz',
+    'corsheaders',
 ]
 
 SITE_ID = 1
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'quiz_app.urls'
@@ -143,6 +145,8 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_UNIQUE_EMAIL = True
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 
